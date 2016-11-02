@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>Web dev tutorial</title>
+    <script type="text/javascript" src="./static/lib/d3.js"></script>
+    <script type="text/javascript" src="./static/lib/leaflet.js"></script>
+    <link rel="stylesheet" href="./static/lib/leaflet.css"/>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body, #map {
+            height: 100%;
+        }           
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+<body>
+    <div>this is a page</div>
+    <div>Lorenzo Villaggi, this is a web page test</div>
+    <div id="event"></div>
+    <div id="map"></div>
+    <script type="text/javascript">
+    	var feature = d3.select("#event");
+    	d3.json("/getData/", function(d) { console.log(d); feature.text('The time is now: ' + d.out); });
+
+        var map = L.map('map').setView([22.399962, 114.117523], 11); 
+        L.tileLayer('https://api.tiles.mapbox.com/4/{mapid}/{z}/{x}{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    mapid: 'mapbox.light',
+    accessToken: [pk.eyJ1IjoibHYyMzExIiwiYSI6IlpPVmdMUzAifQ.nVB2HEq7gi3NM9jbQM7MQg]
+}).addTo(map);
+	</script>
+    
+</body>
+</html>
